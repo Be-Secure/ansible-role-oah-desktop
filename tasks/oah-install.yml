@@ -2,7 +2,7 @@
 - debug:
     msg: "oah-install of oah.desktop"
 
-- name: install ubuntu-desktop
+- name: Install ubuntu-desktop
   become: yes
   become_user: root
   command: "{{ item }}"
