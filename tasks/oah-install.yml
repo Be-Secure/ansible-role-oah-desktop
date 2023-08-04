@@ -9,7 +9,7 @@
   with_items:
           - apt-get -y update
           - apt-get -y upgrade
-          - apt-get install -y ubuntu-desktop
+          - apt-get install -y --no-install-recommends ubuntu-desktop
           - reboot
   ignore_errors: yes
   failed_when: false
