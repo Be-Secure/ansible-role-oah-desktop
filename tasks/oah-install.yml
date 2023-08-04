@@ -8,8 +8,8 @@
   command: "{{ item }}"
   with_items:
           - apt-get -y update
-          - apt-get -y upgrade
-          - apt-get install -y --no-install-recommends kde-plasma-desktop
+          #- apt-get -y upgrade
+          - apt-get install -y --no-install-recommends ubuntu-desktop
           - reboot
   ignore_errors: yes
   failed_when: false
