@@ -1,7 +1,16 @@
 ---
 - debug:
     msg: "oah-reset of oah.desktop"
-- name: purge ubuntu-desktop
-  shell: sudo apt-get purge -y ubuntu-desktop
-- name: install ubuntu-desktop
-  shell: sudo apt-get install -y --no-install-recommends ubuntu-desktop
+
+- name: Remove ubuntu-desktop
+  become: yes
+  become_user: root
+  shell: |
+    apt remove -y nautilus nautilus-* gnome-power-manager gnome-screensaver gnome-termina* gnome-pane* gnome-applet* gnome-bluetooth gnome-desktop* gnome-sessio* gnome-user* gnome-shell-common zeitgeist-core libzeitgeist* gnome-control-center gnome-screenshot
+    apt -y autoremove
+  ignore_errors: yes
+  failed_when: false
+
+- name: Install ubuntu-desktop
+  include_tasks: oah-install.yml
+  ignore_errors: true

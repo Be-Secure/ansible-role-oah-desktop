@@ -2,26 +2,14 @@
 - debug:
     msg: "oah-install of oah.desktop"
 
-- name: install ubuntu-desktop
-  #gather_facts: no
+- name: Install ubuntu-desktop
   become: yes
+  become_user: root
   command: "{{ item }}"
   with_items:
-          - apt-get -y update
-          - apt-get install -y --no-install-recommends ubuntu-desktop
+          - apt -y update
+          - apt-get -y upgrade
+          - apt install -y --no-install-recommends ubuntu-desktop
           - reboot
   ignore_errors: yes
   failed_when: false
-# when: oah_desktop == 'full-desktop'
-
-
-#- name: install ubuntu-desktop
-#  become: yes
-#  command: "{{ item }}"
-#  with_items:
-#          - apt-get -y update
-#          - apt-get install -y --no-install-recommends ubuntu-desktop
-#          - reboot
-#            #- apt-get -y install xorg
-#            #- apt-get -y install --no-install-recommends openbox
-#  when: oah_desktop == 'minimal'  

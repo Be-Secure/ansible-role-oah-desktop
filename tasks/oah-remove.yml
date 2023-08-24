@@ -1,6 +1,13 @@
 ---
 - debug:
     msg: "oah-remove of oah.desktop"
-- name: purge ubuntu-desktop
-  shell: >
-    apt-get purge ubuntu-desktop
+
+- name: Remove ubuntu-desktop
+  become: yes
+  become_user: root
+  shell: |
+    apt remove -y nautilus nautilus-* gnome-power-manager gnome-screensaver gnome-termina* gnome-pane* gnome-applet* gnome-bluetooth gnome-desktop* gnome-sessio* gnome-user* gnome-shell-common zeitgeist-core libzeitgeist* gnome-control-center gnome-screenshot
+    apt -y autoremove
+    reboot
+  ignore_errors: yes
+  failed_when: false
